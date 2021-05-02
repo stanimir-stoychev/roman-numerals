@@ -12,6 +12,13 @@ describe('RomanNumerals (fromRoman)', () => {
         expect(fromRoman('')).toBeUndefined();
     });
 
+    it('should ignore invalid characters', () => {
+        expect(fromRoman('12312V')).toStrictEqual(5);
+        expect(fromRoman('V12312')).toStrictEqual(5);
+        expect(fromRoman('V+I')).toStrictEqual(6);
+        expect(fromRoman('I++++V')).toStrictEqual(4);
+    });
+
     it('should return expected values for pre-defined test cases', () => {
         Object.keys(testCases).forEach((number, index) => {
             expect(fromRoman(testCases[number])).toStrictEqual(index ? Number(number) : undefined);
