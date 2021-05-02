@@ -29,7 +29,7 @@ function Hero() {
     };
 
     const handleFromRomanChange = (event) => {
-        const values = fromRoman(event.target.value);
+        const values = fromRoman(event.target.value?.toUpperCase());
         if (values) pushToHistory({ type: ARABIC_NUMERAL_ENTRY, values });
     };
 
