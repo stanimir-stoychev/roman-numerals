@@ -18,7 +18,7 @@ describe('RomanNumerals (toRoman)', () => {
     });
 
     it('should return expected values for pre-defined test cases', () => {
-        Object.keys(testCases).forEach((number, index) => {
+        Object.keys(testCases).forEach((number) => {
             expect(toRoman(Number(number))).toStrictEqual(testCases[number]);
         });
     });
