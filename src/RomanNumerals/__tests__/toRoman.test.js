@@ -13,8 +13,8 @@ describe('RomanNumerals (toRoman)', () => {
     });
 
     it('should throw an exception when out of bounds', () => {
+        expect(() => toRoman(-1)).toThrowError('"-1" is out of bounds! Roman numerals go up to 3999!');
         expect(() => toRoman(4000)).toThrowError('"4000" is out of bounds! Roman numerals go up to 3999!');
-        expect(() => toRoman(10000)).toThrowError('"10000" is out of bounds! Roman numerals go up to 3999!');
     });
 
     it('should return expected values for pre-defined test cases', () => {

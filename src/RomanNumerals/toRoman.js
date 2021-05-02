@@ -23,7 +23,7 @@ const toRN = (number, { one = 'I', five = 'V', ten = 'X' } = {}) => {
  */
 const toRoman = (number) => {
     if (typeof number !== 'number') return undefined;
-    if (number > 3999) throw new Error(`"${number}" is out of bounds! Roman numerals go up to 3999!`);
+    if (number < 0 || number > 3999) throw new Error(`"${number}" is out of bounds! Roman numerals go up to 3999!`);
 
     const thousands = toRN(Math.floor(number / 1000), { one: 'M' });
 
