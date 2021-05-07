@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import uniqueId from 'lodash/uniqueId';
 import styled from 'styled-components';
 
 import Badge from '@material-ui/core/Badge';
@@ -116,12 +115,11 @@ function History() {
         <StyledHistory maxWidth="md">
             <Grid container direction="column-reverse" justify="center" spacing={2}>
                 {history.reverse().map((entry) => {
-                    const { type, values } = entry;
-                    const key = values[0];
+                    const { id, type, values } = entry;
                     const toValue = type === ROMAN_NUMERAL_ENTRY ? values[1] : [values[1]];
 
                     return (
-                        <Grid item key={uniqueId(key)} xs={12}>
+                        <Grid item key={id} xs={12}>
                             <Result from={values[0]} roman={type === ROMAN_NUMERAL_ENTRY} to={toValue} />
                         </Grid>
                     );

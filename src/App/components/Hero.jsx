@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import uniqueId from 'lodash/uniqueId';
 import styled from 'styled-components';
 
 import Container from '@material-ui/core/Container';
@@ -25,12 +26,12 @@ function Hero() {
 
     const handleToRomanChange = (event) => {
         const values = toRoman(Number.parseInt(event.target.value));
-        if (values) pushToHistory({ type: ROMAN_NUMERAL_ENTRY, values });
+        if (values) pushToHistory({ id: uniqueId(ROMAN_NUMERAL_ENTRY), type: ROMAN_NUMERAL_ENTRY, values });
     };
 
     const handleFromRomanChange = (event) => {
         const values = fromRoman(event.target.value?.toUpperCase());
-        if (values) pushToHistory({ type: ARABIC_NUMERAL_ENTRY, values });
+        if (values) pushToHistory({ id: uniqueId(ARABIC_NUMERAL_ENTRY), type: ARABIC_NUMERAL_ENTRY, values });
     };
 
     return (
