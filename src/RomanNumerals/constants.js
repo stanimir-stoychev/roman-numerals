@@ -1,0 +1,3 @@
+const MAX_ROMAN_NUMERAL = 3999;
+
+export { MAX_ROMAN_NUMERAL };

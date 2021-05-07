@@ -1,3 +1,4 @@
+import { MAX_ROMAN_NUMERAL } from './constants';
 import toRoman from './toRoman';
 
 /**
@@ -9,12 +10,12 @@ import toRoman from './toRoman';
  */
 const boundlessToRoman = (number) => {
     if (typeof number !== 'number' || number < 0) return undefined;
-    if (number > 3999) {
+    if (number > MAX_ROMAN_NUMERAL) {
         return [
-            toRoman(number % 3999),
+            toRoman(number % MAX_ROMAN_NUMERAL),
             {
-                value: toRoman(3999),
-                power: Math.floor(number / 3999),
+                value: toRoman(MAX_ROMAN_NUMERAL),
+                power: Math.floor(number / MAX_ROMAN_NUMERAL),
             },
         ];
     }

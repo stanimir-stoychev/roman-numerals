@@ -1,3 +1,5 @@
+import { MAX_ROMAN_NUMERAL } from './constants';
+
 /**
  * A function that can be used to construct Roman Numerals between 0 and 10.
  *
@@ -23,7 +25,8 @@ const toRN = (number, { one = 'I', five = 'V', ten = 'X' } = {}) => {
  */
 const toRoman = (number) => {
     if (typeof number !== 'number') return undefined;
-    if (number < 0 || number > 3999) throw new Error(`"${number}" is out of bounds! Roman numerals go up to 3999!`);
+    if (number < 0 || number > MAX_ROMAN_NUMERAL)
+        throw new Error(`"${number}" is out of bounds! Roman numerals go up to ${MAX_ROMAN_NUMERAL}!`);
 
     const thousands = toRN(Math.floor(number / 1000), { one: 'M' });
 
