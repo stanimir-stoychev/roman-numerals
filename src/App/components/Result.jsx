@@ -27,6 +27,10 @@ const StyledResult = styled(Container)`
             max-width: 150px;
         }
     }
+
+    .MuiTypography-root {
+        text-align: center;
+    }
 `;
 
 /**
