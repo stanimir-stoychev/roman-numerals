@@ -7,15 +7,29 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Context from './context';
 import AppBar from './components/AppBar';
+import ConvertingNumber from './components/ConvertingNumber';
 import Hero from './components/Hero';
 import History from './components/History';
 
 const theme = createMuiTheme();
 
 function App() {
+    const [converting, setConverting] = useState(false);
     const [history, setHistory] = useState([]);
+
+    const addToHistory = debounce((next) => {
+        setHistory((current) => [next, ...current]);
+        setConverting(false);
+    }, 500);
+
     const contextState = {
-        history: [history, debounce((next) => setHistory((current) => [next, ...current]), 250)],
+        history: [
+            history,
+            (next) => {
+                setConverting(true);
+                addToHistory(next);
+            },
+        ],
     };
 
     return (
@@ -26,6 +40,7 @@ function App() {
                     <AppBar />
                     <main>
                         <Hero />
+                        {converting && <ConvertingNumber />}
                         <History />
                     </main>
                 </Context.Provider>
