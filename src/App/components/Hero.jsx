@@ -7,9 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
+import RomanNumerals from '../../RomanNumerals';
 import Context from '../context';
-import fromRoman from '../helpers/fromRoman';
-import toRoman from '../helpers/toRoman';
 import { ARABIC_NUMERAL_ENTRY, ROMAN_NUMERAL_ENTRY } from '../constants';
 
 const StyledHero = styled.div`
@@ -25,13 +24,17 @@ function Hero() {
     const [, pushToHistory] = useContext(Context).history;
 
     const handleToRomanChange = (event) => {
-        const values = toRoman(Number.parseInt(event.target.value));
-        if (values) pushToHistory({ id: uniqueId(ROMAN_NUMERAL_ENTRY), type: ROMAN_NUMERAL_ENTRY, values });
+        const from = Number.parseInt(event.target.value);
+        const to = RomanNumerals.boundlessToRoman(from);
+        if (typeof to !== 'undefined')
+            pushToHistory({ id: uniqueId(ROMAN_NUMERAL_ENTRY), type: ROMAN_NUMERAL_ENTRY, from, to });
     };
 
     const handleFromRomanChange = (event) => {
-        const values = fromRoman(event.target.value?.toUpperCase());
-        if (values) pushToHistory({ id: uniqueId(ARABIC_NUMERAL_ENTRY), type: ARABIC_NUMERAL_ENTRY, values });
+        const from = event.target.value?.toUpperCase();
+        const to = RomanNumerals.fromRoman(from);
+        if (typeof to !== 'undefined')
+            pushToHistory({ id: uniqueId(ARABIC_NUMERAL_ENTRY), type: ARABIC_NUMERAL_ENTRY, from, to: [to] });
     };
 
     return (
